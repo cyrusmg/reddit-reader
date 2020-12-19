@@ -20,7 +20,7 @@ const getSubredditPosts = async subreddit => {
       title: $(e).find('.title a').text(),
       upvotes: $(e).find('span .unvoted').text(),
       commentCount: $(e).find('.commentcount').text(),
-      href: $(e).find('.title a').attr('href'),
+      href: $(e).find('.commentcount a').attr('href'),
     });
   });
 
