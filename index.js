@@ -93,14 +93,14 @@ const printComments = (commentRoot, depth = 0) => {
 
 const isNumber = str => !isNaN(parseInt(str));
 
-const main = async () => {
+const main = async subreddit => {
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
   });
   const askQuestion = question => new Promise(resolve => rl.question(question, answer => resolve(answer)));
 
-  const posts = await getSubredditPosts('onebag');
+  const posts = await getSubredditPosts(subreddit);
   printHome(posts);
 
   let answer = null;
@@ -129,5 +129,11 @@ const main = async () => {
   });
 };
 
-main();
+const args = process.argv.slice(2);
+if (args.length !== 1) {
+  console.log('Usage: node index.js <subreddit>');
+  process.exit(1);
+}
+
+main(args[0]);
 
